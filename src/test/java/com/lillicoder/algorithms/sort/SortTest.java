@@ -28,213 +28,51 @@ import java.util.List;
 public class SortTest {
 
     /**
-     * Checks if all sort algorithms correctly handle an input
-     * of a list with a no element.
+     * Checks if {@link Sort#isSorted(List, Sort.Order)} correctly handles an input of a list with
+     * no elements.
      */
     @Test
-    public void allSortsHandleEmptyList() {
+    public void isSortedHandlesEmptyList() {
         List<Integer> empty = new ArrayList<>();
 
-        // The list should indicate as sorted and each method call
-        // should not throw any exceptions
-        Assert.assertTrue(Sort.isSorted(empty, Sort.Order.ASCENDING));
-        Sort.bubbleSort(empty, Sort.Order.ASCENDING);
-        Sort.insertionSort(empty, Sort.Order.ASCENDING);
-        Sort.mergeSort(empty, Sort.Order.ASCENDING);
-        Sort.quicksort(empty, Sort.Order.ASCENDING);
+        // Empty lists have no sort, this test is purely for the convention in Sort
+        Sort testSort = new Sort() {
+            @Override
+            public <T extends Comparable<? super T>> List<T> sort(List<T> list, Order order) {
+                // This method is not under test here
+                return null;
+            }
+        };
+        Assert.assertTrue(testSort.isSorted(empty, Sort.Order.ASCENDING));
+        Assert.assertTrue(testSort.isSorted(empty, Sort.Order.DESCENDING));
     }
 
     /**
-     * Checks if all sort algorithms correctly handle an input
+     * Checks if {@link Sort#isSorted(List, Sort.Order)} correctly handles an input
      * of a list with a single element.
      */
     @Test
-    public void allSortsHandleSingleElementList() {
+    public void isSortedHandlesSingleElementList() {
         List<Integer> solo = new ArrayList<>();
         solo.add(1);
 
-        // The list should indicate as sorted and each method call
-        // should not throw any exceptions
-        Assert.assertTrue(Sort.isSorted(solo, Sort.Order.ASCENDING));
-        Sort.bubbleSort(solo, Sort.Order.ASCENDING);
-        Sort.insertionSort(solo, Sort.Order.ASCENDING);
-        Sort.mergeSort(solo, Sort.Order.ASCENDING);
-        Sort.quicksort(solo, Sort.Order.ASCENDING);
-    }
-
-    /**
-     * Checks if bubble sort correctly sorts a list in ascending order.
-     */
-    @Test
-    public void bubbleSortSortsAscending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.bubbleSort(elements, Sort.Order.ASCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.ASCENDING));
-    }
-
-    /**
-     * Checks if bubble sort correctly sorts a list in descending order.
-     */
-    @Test
-    public void bubbleSortSortsDescending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.bubbleSort(elements, Sort.Order.DESCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.DESCENDING));
-    }
-
-    /**
-     * Checks if insertion sort correctly sorts a list in ascending order.
-     */
-    @Test
-    public void insertionSortSortsAscending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.insertionSort(elements, Sort.Order.ASCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.ASCENDING));
-    }
-
-    /**
-     * Checks if insertion sort correctly sorts a list in descending order.
-     */
-    @Test
-    public void insertionSortSortsDescending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.insertionSort(elements, Sort.Order.DESCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.DESCENDING));
-    }
-
-    /**
-     * Checks if merge sort correctly sorts a list in ascending order.
-     */
-    @Test
-    public void mergeSortSortsAscending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        elements = Sort.mergeSort(elements, Sort.Order.ASCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.ASCENDING));
-    }
-
-    /**
-     * Checks if merge sort correctly sorts a list in descending order.
-     */
-    @Test
-    public void mergeSortSortsDescending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        elements = Sort.mergeSort(elements, Sort.Order.DESCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.DESCENDING));
-    }
-
-    /**
-     * Checks if quicksort correctly sorts a list in ascending order.
-     */
-    @Test
-    public void quicksortSortsAscending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.quicksort(elements, Sort.Order.ASCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.ASCENDING));
-    }
-
-    /**
-     * Checks if quicksort correctly sorts a list in descending order.
-     */
-    @Test
-    public void quicksortSortsDescending() {
-        List<Integer> elements = new ArrayList<>();
-        elements.add(5);
-        elements.add(3);
-        elements.add(12);
-        elements.add(1);
-        elements.add(0);
-        elements.add(-1);
-        elements.add(-10);
-        elements.add(6);
-        elements.add(7);
-        elements.add(7);
-
-        Sort.quicksort(elements, Sort.Order.DESCENDING);
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.DESCENDING));
+        // By definition single element lists are sorted, calls for any sort direction should be return true
+        Sort testSort = new Sort() {
+            @Override
+            public <T extends Comparable<? super T>> List<T> sort(List<T> list, Order order) {
+                // This method is not under test here
+                return null;
+            }
+        };
+        Assert.assertTrue(testSort.isSorted(solo, Sort.Order.ASCENDING));
+        Assert.assertTrue(testSort.isSorted(solo, Sort.Order.DESCENDING));
     }
 
     /**
      * Checks if a sorted list is indicated as sorted in ascending order by {@link Sort#isSorted(List, Sort.Order)}.
      */
     @Test
-    public void isSortOnAscendingSortedList() {
+    public void isSortedOnAscendingSortedList() {
         List<Integer> elements = new ArrayList<>();
         elements.add(-2);
         elements.add(-1);
@@ -247,7 +85,14 @@ public class SortTest {
         elements.add(79);
         elements.add(100);
 
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.ASCENDING));
+        Sort testSort = new Sort() {
+            @Override
+            public <T extends Comparable<? super T>> List<T> sort(List<T> list, Order order) {
+                // This method is not under test here
+                return null;
+            }
+        };
+        Assert.assertTrue(testSort.isSorted(elements, Sort.Order.ASCENDING));
     }
 
     /**
@@ -267,7 +112,14 @@ public class SortTest {
         elements.add(-1);
         elements.add(-2);
 
-        Assert.assertTrue(Sort.isSorted(elements, Sort.Order.DESCENDING));
+        Sort testSort = new Sort() {
+            @Override
+            public <T extends Comparable<? super T>> List<T> sort(List<T> list, Order order) {
+                // This method is not under test here
+                return null;
+            }
+        };
+        Assert.assertTrue(testSort.isSorted(elements, Sort.Order.DESCENDING));
     }
 
     /**
@@ -287,8 +139,15 @@ public class SortTest {
         elements.add(-1);
         elements.add(79);
 
-        Assert.assertFalse(Sort.isSorted(elements, Sort.Order.ASCENDING));
-        Assert.assertFalse(Sort.isSorted(elements, Sort.Order.DESCENDING));
+        Sort testSort = new Sort() {
+            @Override
+            public <T extends Comparable<? super T>> List<T> sort(List<T> list, Order order) {
+                // This method is not under test here
+                return null;
+            }
+        };
+        Assert.assertFalse(testSort.isSorted(elements, Sort.Order.ASCENDING));
+        Assert.assertFalse(testSort.isSorted(elements, Sort.Order.DESCENDING));
     }
 
 }
