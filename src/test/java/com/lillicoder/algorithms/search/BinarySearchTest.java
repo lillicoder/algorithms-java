@@ -12,7 +12,7 @@ public class BinarySearchTest {
      * Tests if a binary search correctly finds an element in a sorted list.
      */
     @Test
-    public void binarySearchFindsElement() {
+    public void findsElement() {
         List<Integer> elements = new ArrayList<>();
         elements.add(1);
         elements.add(2);
@@ -30,7 +30,7 @@ public class BinarySearchTest {
      * Tests if a binary search correctly handles an element that is not in the list.
      */
     @Test
-    public void binarySearchDoesNotFindElement() {
+    public void doesNotFindElement() {
         List<Integer> elements = new ArrayList<>();
         elements.add(1);
         elements.add(2);

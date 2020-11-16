@@ -12,7 +12,7 @@ public class LinearSearchTest {
      * Tests if a linear search correctly finds an element in a list.
      */
     @Test
-    public void linearSearchFindsElement() {
+    public void findsElement() {
         List<Integer> elements = new ArrayList<>();
         elements.add(1);
         elements.add(2);
@@ -30,7 +30,7 @@ public class LinearSearchTest {
      * Tests if a linear search correctly handles an element that is not in the list.
      */
     @Test
-    public void linearSearchDoesNotFindElement() {
+    public void doesNotFindElement() {
         List<Integer> elements = new ArrayList<>();
         elements.add(1);
         elements.add(2);
